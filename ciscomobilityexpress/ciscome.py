@@ -59,9 +59,11 @@ class CiscoMobilityExpress:
         for device_entry in client_table_data['data']:
             device_entry['controller'] = self.host
 
+            # find the hostname for the entry (clId)
             for dhcp_entry in dhcp_data['data']:
                 if dhcp_entry['macaddr'] == device_entry['macaddr']:
-                    device_entry = {**dhcp_entry, **device_entry}
+                    if 'clId' in dhcp_entry:
+                        device_entry['clId'] = dhcp_entry['clId']
 
             device = namedtuple("Device", device_entry.keys())(
                 *device_entry.values())

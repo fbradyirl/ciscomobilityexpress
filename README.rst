@@ -20,8 +20,9 @@ ciscomobilityexpress
 
 
 
-Module to interact with Cisco Mobility Express APIs to fetch connected devices.
+Module to interact with `Cisco Mobility Express`_ APIs to fetch connected devices.
 
+Tested with version 8.5.135.0 of the `Cisco Mobility Express`_ firmware.
 
 * Free software: MIT license
 * Documentation: https://ciscomobilityexpress.readthedocs.io.
@@ -30,7 +31,7 @@ Module to interact with Cisco Mobility Express APIs to fetch connected devices.
 Features
 --------
 
-* TODO
+* Fetches all associated devices on the wireless network.
 
 Credits
 -------
@@ -38,4 +39,5 @@ Credits
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`Cisco Mobility Express` : https://www.cisco.com/c/en_uk/solutions/enterprise-networks/mobility-express/index.html
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
