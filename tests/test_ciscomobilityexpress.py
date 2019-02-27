@@ -6,7 +6,7 @@
 
 import unittest
 
-from ciscomobilityexpress import ciscomobilityexpress
+from ciscomobilityexpress import ciscome
 
 
 class TestCiscomobilityexpress(unittest.TestCase):
