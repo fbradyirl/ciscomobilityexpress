@@ -12,3 +12,7 @@ History
 
 * Improved docs.
 * Only add client ID to tuple when looking up device name.
+
+0.1.3 (2019-03-26)
+------------------
+* Fixes missing devices #12
