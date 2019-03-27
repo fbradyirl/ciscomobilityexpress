@@ -20,3 +20,7 @@ History
 0.1.4 (2019-03-26)
 ------------------
 * Unpin reqs
+
+0.1.5 (2019-03-27)
+------------------
+* Always set clId to default string

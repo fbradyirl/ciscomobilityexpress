@@ -65,6 +65,9 @@ class CiscoMobilityExpress:
                     if 'clId' in dhcp_entry:
                         device_entry['clId'] = dhcp_entry['clId']
 
+            if 'clId' not in device_entry:
+                device_entry['clId'] = ''
+
             device = namedtuple("Device", device_entry.keys())(
                 *device_entry.values())
             results_list.append(device)
