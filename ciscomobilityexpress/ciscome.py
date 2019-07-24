@@ -86,19 +86,19 @@ class CiscoMobilityExpress:
         if response.status_code == 200:
             return response.json()
 
+        err_res = "Got {} from {}: {}".format(
+            response.status_code, url, response.text)
+        log.error(err_res)
+
         if response.status_code == 401:
-            log.error(f"Got 401 from {url}: {response.text}")
             raise CiscoMELoginError("Failed to authenticate "
                                     "with Cisco Mobility Express "
                                     "controller, check your "
                                     "username and password. Full "
                                     "response was: {}".format(response.text))
         elif response.status_code == 404:
-            log.error(f"Got 404 from {url}: {response.text}")
             raise CiscoMEPageNotFoundError("Cisco Mobility Express responded "
                                            "with a 404 "
                                            "from %s", url)
-
-        log.error(f"Got {response.status_code} from {url}: {response.text}")
 
         return []

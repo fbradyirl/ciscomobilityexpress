@@ -29,3 +29,7 @@ History
 ------------------
 * Add extra logging
 
+0.1.7 (2019-07-24)
+------------------
+* Remove f strings
+* Add py35, py36 to tox.ini
