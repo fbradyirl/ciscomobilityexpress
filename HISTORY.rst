@@ -33,3 +33,7 @@ History
 ------------------
 * Remove f strings
 * Add py35, py36 to tox.ini
+
+0.3.2 (2019-08-08)
+------------------
+* Fix for https://github.com/home-assistant/home-assistant/issues/25183 

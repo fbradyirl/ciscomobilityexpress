@@ -30,10 +30,9 @@ class CiscoMobilityExpress:
         protocol = 'http' if not is_https else 'https'
         self.host = host
         self.host_api_url = '{}://{}'.format(protocol, host)
-        self.username = username
-        self.password = password
-        self.verify_ssl = verify_ssl
         self.session = requests.Session()
+        self.session.auth = (username, password)
+        self.session.verify = verify_ssl
         self.logged_in = False
         self.get_system_info()
 
@@ -79,26 +78,38 @@ class CiscoMobilityExpress:
         """Perform one api request operation."""
 
         log.info("_call_api : %s" % url)
-        response = self.session.get(
-            url, auth=(self.username, self.password),
-            verify=self.verify_ssl)
+        response = self.session.get(url)
 
-        if response.status_code == 200:
-            return response.json()
-
-        err_res = "Got {} from {}: {}".format(
-            response.status_code, url, response.text)
-        log.error(err_res)
+        if response.status_code != 200:
+            error_msg = "Got {} from {}: {}".format(
+                response.status_code, url, response.text)
+            log.error(error_msg)
 
         if response.status_code == 401:
-            raise CiscoMELoginError("Failed to authenticate "
-                                    "with Cisco Mobility Express "
-                                    "controller, check your "
-                                    "username and password. Full "
-                                    "response was: {}".format(response.text))
+            # Fix for github.com/home-assistant/home-assistant/issues/25183
+            # Retry again.
+            log.info("Got 401, going to retry a second time to url: %s" % url)
+            response = self.session.get(url)
+
+            if response.status_code != 200:
+                error_msg = "Got {} from {}: {}".format(
+                    response.status_code, url, response.text)
+                log.error(error_msg)
+
+            if response.status_code == 401:
+                raise CiscoMELoginError("Failed to authenticate "
+                                        "with Cisco Mobility Express "
+                                        "controller, check your "
+                                        "username and password. Full response"
+                                        " was: {}".format(response.text))
+            else:
+                log.info("Second retry succeeded to url: %s" % url)
+
         elif response.status_code == 404:
             raise CiscoMEPageNotFoundError("Cisco Mobility Express responded "
                                            "with a 404 "
                                            "from %s", url)
+        elif response.status_code == 200:
+            return response.json()
 
         return []
