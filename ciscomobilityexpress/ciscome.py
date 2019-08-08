@@ -91,24 +91,26 @@ class CiscoMobilityExpress:
             log.info("Got 401, going to retry a second time to url: %s" % url)
             response = self.session.get(url)
 
-            if response.status_code != 200:
-                error_msg = "Got {} from {}: {}".format(
-                    response.status_code, url, response.text)
-                log.error(error_msg)
+            if response.status_code == 200:
+                log.info("Second retry succeeded to url: %s" % url)
+                return response.json()
 
-            if response.status_code == 401:
+            elif response.status_code == 401:
                 raise CiscoMELoginError("Failed to authenticate "
                                         "with Cisco Mobility Express "
                                         "controller, check your "
                                         "username and password. Full response"
                                         " was: {}".format(response.text))
             else:
-                log.info("Second retry succeeded to url: %s" % url)
+                error_msg = "Got {} from {}: {}".format(
+                    response.status_code, url, response.text)
+                log.error(error_msg)
 
         elif response.status_code == 404:
             raise CiscoMEPageNotFoundError("Cisco Mobility Express responded "
                                            "with a 404 "
                                            "from %s", url)
+
         elif response.status_code == 200:
             return response.json()
 

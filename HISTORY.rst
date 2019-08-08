@@ -37,3 +37,8 @@ History
 0.3.2 (2019-08-08)
 ------------------
 * Fix for https://github.com/home-assistant/home-assistant/issues/25183 
+
+
+0.3.3 (2019-08-08)
+------------------
+* Fix bug
