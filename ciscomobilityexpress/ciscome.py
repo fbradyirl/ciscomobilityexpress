@@ -13,6 +13,10 @@ from .exceptions import CiscoMEConfigError, \
 from .constants import Constants
 
 log = logging.getLogger(__name__)
+# logging.basicConfig(
+#     format='%(asctime)s %(levelname)-8s : %(message)s',
+#     level=logging.DEBUG,
+#     datefmt='%Y-%m-%d %H:%M:%S')
 
 
 class CiscoMobilityExpress:
@@ -40,7 +44,7 @@ class CiscoMobilityExpress:
         """Retrieve system info from Cisco ME."""
         url = Constants.SYSTEM_INFO_URL.format(self.host_api_url)
         json_data = self._call_api(url)
-        log.info("version: %s", json_data['version'])
+        log.debug("version: %s", json_data['version'])
         self.logged_in = True
 
     def is_logged_in(self):
@@ -77,10 +81,10 @@ class CiscoMobilityExpress:
     def _call_api(self, url):
         """Perform one api request operation."""
 
-        log.info("_call_api : %s" % url)
+        log.debug("_call_api : %s" % url)
         response = self.session.get(url)
 
-        if response.status_code != 200:
+        if response.status_code not in [200, 401]:
             error_msg = "Got {} from {}: {}".format(
                 response.status_code, url, response.text)
             log.error(error_msg)
@@ -88,11 +92,11 @@ class CiscoMobilityExpress:
         if response.status_code == 401:
             # Fix for github.com/home-assistant/home-assistant/issues/25183
             # Retry again.
-            log.info("Got 401, going to retry a second time to url: %s" % url)
+            log.debug("Got 401, going to retry a second time to url: %s" % url)
             response = self.session.get(url)
 
             if response.status_code == 200:
-                log.info("Second retry succeeded to url: %s" % url)
+                log.debug("Second retry succeeded to url: %s" % url)
                 return response.json()
 
             elif response.status_code == 401:
