@@ -58,3 +58,7 @@ History
 0.3.7 (2020-12-08)
 ------------------
 * Switch build from travis to github actions
+
+0.3.8 (2020-12-08)
+------------------
+* Fix build wheel for tox
