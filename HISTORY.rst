@@ -54,3 +54,7 @@ History
 0.3.6 (2020-12-07)
 ------------------
 * Update travis auth again.
+
+0.3.7 (2020-12-08)
+------------------
+* Switch build from travis to github actions
