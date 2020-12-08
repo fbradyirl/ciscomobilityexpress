@@ -6,8 +6,8 @@ ciscomobilityexpress
 .. image:: https://img.shields.io/pypi/v/ciscomobilityexpress.svg
         :target: https://pypi.python.org/pypi/ciscomobilityexpress
 
-.. image:: https://img.shields.io/travis/fbradyirl/ciscomobilityexpress.svg
-        :target: https://travis-ci.org/fbradyirl/ciscomobilityexpress
+.. image:: https://github.com/fbradyirl/ciscomobilityexpress/workflows/.github/workflows/main.yml/badge.svg
+        :target: https://github.com/fbradyirl/ciscomobilityexpress/actions
 
 .. image:: https://readthedocs.org/projects/ciscomobilityexpress/badge/?version=latest
         :target: https://ciscomobilityexpress.readthedocs.io/en/latest/?badge=latest
