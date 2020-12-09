@@ -38,14 +38,25 @@ class CiscoMobilityExpress:
         self.session.auth = (username, password)
         self.session.verify = verify_ssl
         self.logged_in = False
+        self.serial_number = None
+        self.system_name = None
+        self.system_info = None
         self.get_system_info()
 
     def get_system_info(self):
         """Retrieve system info from Cisco ME."""
         url = Constants.SYSTEM_INFO_URL.format(self.host_api_url)
         json_data = self._call_api(url)
-        log.debug("version: %s", json_data['version'])
+        if 'serial' in json_data:
+            log.debug("serial: %s", json_data['serial'])
+            self.serial_number = json_data['serial']
+        if 'sysname' in json_data:
+            log.debug("sysname: %s", json_data['sysname'])
+            self.system_name = json_data['sysname']
         self.logged_in = True
+        self.system_info = json_data
+        log.debug("system_info: %s", self.system_info)
+        return json_data
 
     def is_logged_in(self):
         """Returns true if a successful login has happened"""

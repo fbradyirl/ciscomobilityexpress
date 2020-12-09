@@ -66,3 +66,7 @@ History
 0.3.9 (2020-12-08)
 ------------------
 * Build wheel
+
+1.0.0 (2020-12-09)
+------------------
+* Parse items from system info such as serial and system name.
