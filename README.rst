@@ -6,7 +6,7 @@ ciscomobilityexpress
 .. image:: https://img.shields.io/pypi/v/ciscomobilityexpress.svg
         :target: https://pypi.python.org/pypi/ciscomobilityexpress
 
-.. image:: https://github.com/fbradyirl/ciscomobilityexpress/workflows/.github/workflows/main.yml/badge.svg
+.. image:: https://github.com/fbradyirl/ciscomobilityexpress/workflows/Python%20package/badge.svg
         :target: https://github.com/fbradyirl/ciscomobilityexpress/actions
 
 .. image:: https://readthedocs.org/projects/ciscomobilityexpress/badge/?version=latest
@@ -22,7 +22,9 @@ ciscomobilityexpress
 
 Module to interact with `Cisco Mobility Express`_ APIs to fetch connected devices.
 
-Tested with version 8.5.135.0 of the `Cisco Mobility Express`_ firmware.
+Tested with the following versions of the `Cisco Mobility Express`_ firmware:
+* `8.10.130.0`
+* `8.5.135.0`
 
 * Free software: MIT license
 * Documentation: https://ciscomobilityexpress.readthedocs.io.
