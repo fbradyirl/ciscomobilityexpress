@@ -70,3 +70,7 @@ History
 1.0.0 (2020-12-09)
 ------------------
 * Parse items from system info such as serial and system name.
+
+1.0.1 (2021-03-12)
+------------------
+* Fix tox.ini for github actions tests.
